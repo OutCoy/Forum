@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useReducer } from "react";
 import { createContext } from "react";
 
@@ -30,6 +30,7 @@ const reducer = (state, action) => {
 const UsersProvider = ({children}) => {
 
   const [users, setUsers] = useReducer(reducer, []);
+  const [logedUser, setLogedUser] = useState(null);
 
   useEffect(() => {
     fetch('http://localhost:8080/users').then(res => res.json()).then(data => {
@@ -40,14 +41,14 @@ const UsersProvider = ({children}) => {
     });
   }, []);
 
-  console.log(users);
-
   return (
     <UsersContext.Provider
       value={{
         users,
         setUsers,
-        UsersActionTypes
+        UsersActionTypes,
+        logedUser,
+        setLogedUser
       }}
     >
       {children}

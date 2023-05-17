@@ -14,7 +14,7 @@ const StyledRegister = styled.main`
 const Register = () => {
 
   const [isUsernameTaken, setIsUsernameTaken] = useState(false);
-  const { users, setUsers, UsersActionTypes } = useContext(UsersContext);
+  const { users, setUsers, UsersActionTypes, setLogedUser } = useContext(UsersContext);
 
   const validationSchema = Yup.object({
     username: Yup.string().min(4, 'Username has to be 4-20 symbols long.').max(20, 'Username has to be 4-20 symbols long.').required('Username is required'),
@@ -46,6 +46,7 @@ const Register = () => {
           type: UsersActionTypes.add,
           data: newUser
         });
+        setLogedUser(newUser);
       }
     }
   });
