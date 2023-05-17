@@ -1,4 +1,4 @@
-import { createContext, useEffect, useReducer } from "react";
+import { createContext, useEffect, useReducer, useState } from "react";
 
 const QuestionsContext = createContext(null);
 
@@ -18,6 +18,7 @@ const reducer = (status, action) => {
 const QuestionsProvider = ({children}) => {
 
   const [questions, setQuestions] = useReducer(reducer, []);
+  const [dataLoaded, setDataLoaded] = useState(false);
 
   useEffect(() => {
     fetch('http://localhost:8080/questions').then(res => res.json()).then(data => {
@@ -25,14 +26,17 @@ const QuestionsProvider = ({children}) => {
         type: QuesitonsActionsType.get,
         data: data
       });
+      setDataLoaded(true);
     });
   }, []);
+  console.log(questions);
 
   return (
     <QuestionsContext.Provider
       value={{
         questions,
-        setQuestions
+        setQuestions,
+        dataLoaded
       }}
     >
       {children}
