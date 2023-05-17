@@ -1,0 +1,41 @@
+{
+  "questions": [
+    {
+      "id": "1",
+      "userId": "1",
+      "title": "Title",
+      "question": "Quesiton...",
+      "rating": [
+        {
+          "userId": "1",
+          "value": -1
+        }
+      ],
+      "isEdited": false,
+      "answers": [
+        {
+          "id": "1",
+          "questionId": "1",
+          "userId": "1",
+          "answer": "Answer...",
+          "rating": [
+            {
+              "userId": "1",
+              "value": -1
+            }
+          ],
+          "isEdited": false
+        }
+      ]
+    }
+  ],
+  "users": [
+    {
+      "id": "1",
+      "username": "admin",
+      "email": "admin@email.com",
+      "password": "admin",
+      "avatarImg": "http://avatar-placeholder.com"
+    }
+  ]
+}
