@@ -11,7 +11,6 @@ const StyledHome = styled.main`
 
 const Home = () => {
   const { questions, dataLoaded } = useContext(QuestionsContext);
-  console.log(questions);
   return (
     <StyledHome>
       <div>

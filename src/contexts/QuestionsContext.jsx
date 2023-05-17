@@ -29,7 +29,6 @@ const QuestionsProvider = ({children}) => {
       setDataLoaded(true);
     });
   }, []);
-  console.log(questions);
 
   return (
     <QuestionsContext.Provider
