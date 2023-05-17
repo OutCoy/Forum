@@ -33,7 +33,6 @@
     {
       "id": "1",
       "username": "admin",
-      "email": "admin@email.com",
       "password": "admin",
       "avatarImg": "http://avatar-placeholder.com"
     }

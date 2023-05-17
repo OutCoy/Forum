@@ -35,7 +35,7 @@ const UsersProvider = ({children}) => {
   return (
     <UsersContext.Provider
       value={{
-        
+        users
       }}
     >
       {children}
