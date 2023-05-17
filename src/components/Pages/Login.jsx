@@ -13,7 +13,7 @@ const StyledLogin = styled.main`
 const Login = () => {
 
   const [isUnsuccessful, setIsUnsuccessful] = useState(false);
-  const { users } = useContext(UsersContext);
+  const { users, setLogedUser } = useContext(UsersContext);
 
   const validationSchema = Yup.object({
     username: Yup.string()
@@ -33,7 +33,7 @@ const Login = () => {
     onSubmit: (values) => {
       const loggedInUser = users.find(user => user.username === values.username && user.password === values.password);
       if(loggedInUser){
-        console.log(loggedInUser);
+        setLogedUser(loggedInUser);
       } else {
         setIsUnsuccessful(true);
       }
