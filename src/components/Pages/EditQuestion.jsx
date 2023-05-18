@@ -32,7 +32,7 @@ const EditQuestion = () => {
     onSubmit: values => {
       const editedQuestion = {
         id: data.id,
-        userId: data.id,
+        userId: data.userId,
         title: values.title,
         question: values.question,
         rating: data.rating,
