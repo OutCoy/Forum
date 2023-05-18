@@ -5,7 +5,8 @@ const QuestionsContext = createContext(null);
 const QuestionsActionsType = {
   get: 'get_all_questions',
   add: 'add_new_question',
-  edit: 'edit_question'
+  edit: 'edit_question',
+  del: 'delete_question'
 }
 
 const reducer = (status, action) => {
@@ -36,6 +37,11 @@ const reducer = (status, action) => {
           return el;
         }
       });
+    case QuestionsActionsType.del:
+      fetch(`http://localhost:8080/questions/${action.id}`, {
+        method: "DELETE"
+      });
+      return status.filter(el => el.id !== action.id);
     default:
       return status;
   }
