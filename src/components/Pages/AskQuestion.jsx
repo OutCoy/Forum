@@ -43,7 +43,6 @@ const AskQuestion = () => {
         type: QuestionsActionsType.add,
         data: newQuestion
       });
-      console.log(newQuestion);
       navigate('/');
     }
 

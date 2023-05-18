@@ -29,7 +29,7 @@ const QuestionPage = () => {
   return (
     <StyledQuestionPage>
       {
-        data.userId === logedUser.id && <><Link to={`/editQuestion/${id}`}>Edit</Link><button onClick={() => deleteQuestion()}>Delete</button></>
+        data.userId === logedUser?.id && <><Link to={`/editQuestion/${id}`}>Edit</Link><button onClick={() => deleteQuestion()}>Delete</button></>
       }
       <h1>{data.title}</h1>
       <p>{data.question}</p>
