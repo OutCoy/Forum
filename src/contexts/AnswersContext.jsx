@@ -4,7 +4,8 @@ import { createContext, useEffect, useReducer } from "react";
 
   const AnswersActionsType = {
     get: 'get_all_answers',
-    add: 'add_new_answer'
+    add: 'add_new_answer',
+    edit: 'edit_answer'
   }
 
   const reducer = (state, action) => {
@@ -20,6 +21,21 @@ import { createContext, useEffect, useReducer } from "react";
           body: JSON.stringify(action.data)
         });
         return [...state, action.data];
+      case AnswersActionsType.edit:
+        fetch(`http://localhost:8080/answers/${action.id}`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(action.data)
+        });
+        return state.map(el => {
+          if(el.id === action.id){
+            return action.data;
+          } else {
+            return el;
+          }
+        })
       default:
         return state;
     }
