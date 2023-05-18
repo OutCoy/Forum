@@ -1,6 +1,8 @@
 import { useContext } from "react";
 import styled from "styled-components";
 import UsersContext from "../../contexts/UsersContext";
+import { useFormik } from "formik";
+import * as Yup from 'yup';
 
 const StyledAskQuestion = styled.main`
   background-color: #0b0e0f;
@@ -12,17 +14,42 @@ const AskQuestion = () => {
 
   const { logedUser } = useContext(UsersContext);
 
+  const validationSchema = Yup.object({
+    title: Yup.string().required('Question has to have title.'),
+    question: Yup.string().required('Type your question.')
+  })
+
+  const formik = useFormik({
+    initialValues: {
+      title: '',
+      question: ''
+    },
+    validationSchema, validationSchema,
+    onSubmit: values => {
+      console.log(values);
+    }
+
+  })
+
   return (
     <StyledAskQuestion>
-      <form>
+      <h1>New Question form</h1>
+      <form onSubmit={formik.handleSubmit}>
         <div>
           <label htmlFor="title">Question Title</label>
-          <input type="text" name="title" id="title" />
+          <input type="text" name="title" id="title" onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.title}/>
+          {
+            formik.touched.title && formik.errors.title && <p>{formik.errors.title}</p>
+          }
         </div>
         <div>
           <label htmlFor="question">Question</label>
-          <input type="text" name="question" id="question" />
+          <textarea id="question" name="question" onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.question}></textarea>
+          {
+            formik.touched.question && formik.errors.question && <p>{formik.errors.question}</p>
+          }
         </div>
+        <input type="submit" value="Ask" />
       </form>
     </StyledAskQuestion>
   );
