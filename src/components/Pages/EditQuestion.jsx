@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import { useContext } from "react";
 import QuestionsContext from "../../contexts/QuestionsContext";
@@ -13,8 +13,9 @@ color: #fff;
 
 const EditQuestion = () => {
 
+  const navigate = useNavigate();
   const { id } = useParams();
-  const { questions } = useContext(QuestionsContext);
+  const { questions, setQuestions, QuestionsActionsType } = useContext(QuestionsContext);
   const data = questions.find(question => question.id === id);
 
   const validationSchema = Yup.object({
@@ -29,7 +30,20 @@ const EditQuestion = () => {
     },
     validationSchema: validationSchema,
     onSubmit: values => {
-      console.log(values);
+      const editedQuestion = {
+        id: data.id,
+        userId: data.id,
+        title: values.title,
+        question: values.question,
+        rating: data.rating,
+        isEdited: true
+      }
+      setQuestions({
+        id: data.id,
+        type: QuestionsActionsType.edit,
+        data: editedQuestion
+      });
+      navigate('/');
     }
   })
 

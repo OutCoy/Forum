@@ -4,7 +4,8 @@ const QuestionsContext = createContext(null);
 
 const QuestionsActionsType = {
   get: 'get_all_questions',
-  add: 'add_new_question'
+  add: 'add_new_question',
+  edit: 'edit_question'
 }
 
 const reducer = (status, action) => {
@@ -20,6 +21,21 @@ const reducer = (status, action) => {
         body: JSON.stringify(action.data)
       });
       return [...status, action.data];
+    case QuestionsActionsType.edit:
+      fetch(`http://localhost:8080/questions/${action.id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(action.data)
+      });
+      return status.map(el => {
+        if(el.id === action.id){
+          return action.data;
+        } else {
+          return el;
+        }
+      });
     default:
       return status;
   }
