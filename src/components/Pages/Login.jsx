@@ -3,6 +3,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useContext, useState } from "react";
 import UsersContext from "../../contexts/UsersContext";
+import { useNavigate } from "react-router-dom";
 
 const StyledLogin = styled.main`
   min-height: 100vh;
@@ -12,6 +13,7 @@ const StyledLogin = styled.main`
 
 const Login = () => {
 
+  const navigate = useNavigate();
   const [isUnsuccessful, setIsUnsuccessful] = useState(false);
   const { users, setLogedUser } = useContext(UsersContext);
 
@@ -34,6 +36,7 @@ const Login = () => {
       const loggedInUser = users.find(user => user.username === values.username && user.password === values.password);
       if(loggedInUser){
         setLogedUser(loggedInUser);
+        navigate('/');
       } else {
         setIsUnsuccessful(true);
       }
