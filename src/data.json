@@ -11,22 +11,46 @@
           "value": -1
         }
       ],
-      "isEdited": false,
-      "answers": [
+      "isEdited": false
+    },
+    {
+      "id": "2",
+      "userId": "1",
+      "title": "Title",
+      "question": "Quesiton...",
+      "rating": [
         {
-          "id": "1",
-          "questionId": "1",
           "userId": "1",
-          "answer": "Answer...",
-          "rating": [
-            {
-              "userId": "1",
-              "value": -1
-            }
-          ],
-          "isEdited": false
+          "value": 1
         }
-      ]
+      ],
+      "isEdited": false
+    },
+    {
+      "id": "3",
+      "userId": "1",
+      "title": "Title",
+      "question": "Quesiton...",
+      "rating": [
+        {
+          "userId": "1",
+          "value": 1
+        }
+      ],
+      "isEdited": false
+    },
+    {
+      "id": "4",
+      "userId": "1",
+      "title": "Title",
+      "question": "Quesiton...",
+      "rating": [
+        {
+          "userId": "1",
+          "value": 1
+        }
+      ],
+      "isEdited": false
     }
   ],
   "users": [
@@ -35,6 +59,21 @@
       "username": "admin",
       "password": "admin",
       "avatarImg": "http://avatar-placeholder.com"
+    }
+  ],
+  "answers": [
+    {
+      "id": "1",
+      "questionId": "1",
+      "userId": "1",
+      "answer": "Answer...",
+      "rating": [
+        {
+          "userId": "1",
+          "value": -1
+        }
+      ],
+      "isEdited": false
     }
   ]
 }
