@@ -5,7 +5,8 @@ import { createContext, useEffect, useReducer } from "react";
   const AnswersActionsType = {
     get: 'get_all_answers',
     add: 'add_new_answer',
-    edit: 'edit_answer'
+    edit: 'edit_answer',
+    delete: 'delete_answer'
   }
 
   const reducer = (state, action) => {
@@ -35,7 +36,9 @@ import { createContext, useEffect, useReducer } from "react";
           } else {
             return el;
           }
-        })
+        });
+      case AnswersActionsType.delete:
+        return state.filter(el => el.id !== action.id);
       default:
         return state;
     }

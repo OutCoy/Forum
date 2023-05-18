@@ -38,7 +38,6 @@ const QuestionPage = () => {
       ),
     }),
     onSubmit: (values) => {
-      console.log(values);
       const newAnswer = {
         id: uuid(),
         questionId: id,
@@ -47,7 +46,6 @@ const QuestionPage = () => {
         rating: [],
         isEdited: false,
       };
-      console.log(newAnswer);
       setAnswers({
         type: AnswersActionsType.add,
         data: newAnswer,
