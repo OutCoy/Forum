@@ -3,6 +3,9 @@ import styled from "styled-components";
 import UsersContext from "../../contexts/UsersContext";
 import { useFormik } from "formik";
 import * as Yup from 'yup';
+import { v4 as uuid } from 'uuid';
+import QuestionsContext from "../../contexts/QuestionsContext";
+import { useNavigate } from "react-router-dom";
 
 const StyledAskQuestion = styled.main`
   background-color: #0b0e0f;
@@ -12,7 +15,10 @@ const StyledAskQuestion = styled.main`
 
 const AskQuestion = () => {
 
+  const navigate = useNavigate();
+
   const { logedUser } = useContext(UsersContext);
+  const { QuestionsActionsType, setQuestions } = useContext(QuestionsContext);
 
   const validationSchema = Yup.object({
     title: Yup.string().required('Question has to have title.'),
@@ -26,7 +32,19 @@ const AskQuestion = () => {
     },
     validationSchema, validationSchema,
     onSubmit: values => {
-      console.log(values);
+      const newQuestion = {
+        id: uuid(),
+        userId: logedUser.id,
+        ...values,
+        rating: [],
+        isEdited: false
+      };
+      setQuestions({
+        type: QuestionsActionsType.add,
+        data: newQuestion
+      });
+      console.log(newQuestion);
+      navigate('/');
     }
 
   })

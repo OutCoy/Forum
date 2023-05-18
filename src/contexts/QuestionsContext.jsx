@@ -2,14 +2,24 @@ import { createContext, useEffect, useReducer, useState } from "react";
 
 const QuestionsContext = createContext(null);
 
-const QuesitonsActionsType = {
-  get: 'get_all_questions'
+const QuestionsActionsType = {
+  get: 'get_all_questions',
+  add: 'add_new_question'
 }
 
 const reducer = (status, action) => {
   switch(action.type){
-    case QuesitonsActionsType.get:
+    case QuestionsActionsType.get:
       return action.data;
+    case QuestionsActionsType.add:
+      fetch('http://localhost:8080/questions', {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(action.data)
+      });
+      return [...status, action.data];
     default:
       return status;
   }
@@ -23,7 +33,7 @@ const QuestionsProvider = ({children}) => {
   useEffect(() => {
     fetch('http://localhost:8080/questions').then(res => res.json()).then(data => {
       setQuestions({
-        type: QuesitonsActionsType.get,
+        type: QuestionsActionsType.get,
         data: data
       });
       setDataLoaded(true);
@@ -35,7 +45,8 @@ const QuestionsProvider = ({children}) => {
       value={{
         questions,
         setQuestions,
-        dataLoaded
+        dataLoaded,
+        QuestionsActionsType
       }}
     >
       {children}
