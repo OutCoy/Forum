@@ -8,7 +8,7 @@ import Answer from "../Molecules/Answer";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { v4 as uuid } from "uuid";
-import LikesDislikes from "../Molecules/LikesDislikes";
+import LikesDislikes from "../Atoms/LikesDislikes";
 
 const StyledQuestionPage = styled.main`
   background-color: #0b0e0f;
