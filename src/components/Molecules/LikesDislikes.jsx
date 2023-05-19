@@ -24,14 +24,14 @@ const LikesDislikes = ({ data, setMethod, setActionType }) => {
     if (logedUser) {
       const ratingExists = newData.rating.find((el) => el.userId === logedUser.id);
       if (ratingExists) {
-        if(ratingExists.value === 1 && value === 1 || ratingExists.value === -1 && value === -1){
+        if((ratingExists.value === 1 && value === 1) || (ratingExists.value === -1 && value === -1)){
           setNewData({...newData, rating:newData.rating.filter(el => el.userId !== logedUser.id)});
           setMethod({
             type: setActionType.edit,
             id: newData.id,
             data: {...newData, rating:newData.rating.filter(el => el.userId !== logedUser.id)}
           });
-        } else if(ratingExists.value === 1 && value === -1 || ratingExists.value === -1 && value === 1){
+        } else if((ratingExists.value === 1 && value === -1) || (ratingExists.value === -1 && value === 1)){
           setNewData({...newData, rating:newData.rating.map(el => {if(el.userId === logedUser.id){ return {userId:  logedUser.id, value: value}} else {return el}})});
           setMethod({
             type: setActionType.edit,
