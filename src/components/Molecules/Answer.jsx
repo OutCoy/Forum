@@ -4,7 +4,7 @@ import styled from "styled-components";
 import UsersContext from "../../contexts/UsersContext";
 import AnswersContext from "../../contexts/AnswersContext";
 import { BsFillTrash3Fill } from "react-icons/bs";
-import LikesDislikes from "./LikesDislikes";
+import LikesDislikes from "../Atoms/LikesDislikes";
 
 const StyledAnswer = styled.div``;
 
