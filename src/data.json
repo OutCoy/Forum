@@ -59,6 +59,12 @@
       "username": "admin",
       "password": "admin",
       "avatarImg": "http://avatar-placeholder.com"
+    },
+    {
+      "id": "2",
+      "username": "aaaa",
+      "password": "a",
+      "avatarImg": "http://avatar-placeholder.com"
     }
   ],
   "answers": [
@@ -70,6 +76,10 @@
       "rating": [
         {
           "userId": "1",
+          "value": -1
+        },
+        {
+          "userId": "2",
           "value": -1
         }
       ],
