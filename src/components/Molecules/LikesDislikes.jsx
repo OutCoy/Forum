@@ -3,7 +3,6 @@ import { AiFillLike, AiFillDislike } from "react-icons/ai";
 import { useContext, useState } from "react";
 import UsersContext from "../../contexts/UsersContext";
 import { useNavigate } from "react-router-dom";
-import AnswersContext from "../../contexts/AnswersContext";
 
 const StyledLikesDislikes = styled.div`
 .like{
@@ -16,11 +15,10 @@ const StyledLikesDislikes = styled.div`
   cursor: pointer;
 }`;
 
-const LikesDislikes = ({ data }) => {
+const LikesDislikes = ({ data, setMethod, setActionType }) => {
   const navigate = useNavigate();
   const { logedUser } = useContext(UsersContext);
   const [newData, setNewData] = useState(data);
-  const { setAnswers, AnswersActionsType } = useContext(AnswersContext);
 
   const rate = (value) => {
     if (logedUser) {
@@ -28,15 +26,15 @@ const LikesDislikes = ({ data }) => {
       if (ratingExists) {
         if(ratingExists.value === 1 && value === 1 || ratingExists.value === -1 && value === -1){
           setNewData({...newData, rating:newData.rating.filter(el => el.userId !== logedUser.id)});
-          setAnswers({
-            type: AnswersActionsType.edit,
+          setMethod({
+            type: setActionType.edit,
             id: newData.id,
             data: {...newData, rating:newData.rating.filter(el => el.userId !== logedUser.id)}
           });
         } else if(ratingExists.value === 1 && value === -1 || ratingExists.value === -1 && value === 1){
           setNewData({...newData, rating:newData.rating.map(el => {if(el.userId === logedUser.id){ return {userId:  logedUser.id, value: value}} else {return el}})});
-          setAnswers({
-            type: AnswersActionsType.edit,
+          setMethod({
+            type: setActionType.edit,
             id: newData.id,
             data: {...newData, rating:newData.rating.map(el => {if(el.userId === logedUser.id){ return {userId:  logedUser.id, value: value}} else {return el}})}
           });
@@ -47,8 +45,8 @@ const LikesDislikes = ({ data }) => {
           value: value,
         };
         setNewData({...newData, rating: [...newData.rating, newRating]});
-        setAnswers({
-          type: AnswersActionsType.edit,
+        setMethod({
+          type: setActionType.edit,
             id: newData.id,
             data: {...newData, rating: [...newData.rating, newRating]}
         });
