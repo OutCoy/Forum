@@ -30,6 +30,13 @@ const HeaderContent = styled.div`
       display: flex;
       gap: 10px;
       align-items: center;
+      img{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #fff;
+        font-size: 0.7rem;
+      }
       >span{
         color: #fff;
         font-size: 1.1rem;
