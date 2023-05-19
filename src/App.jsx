@@ -5,10 +5,12 @@ import QuestionPage from './components/Pages/QuestionPage';
 import Login from './components/Pages/Login';
 import AskQuestion from './components/Pages/AskQuestion';
 import EditQuestion from './components/Pages/EditQuestion';
+import Header from './components/Organisms/Header';
 
 const App = () => {
   return (
     <>
+    <Header />
       <Routes>
         <Route path='/askQuestion' element={<AskQuestion />} />
         <Route path='/editQuestion/:id' element={<EditQuestion />}/>
