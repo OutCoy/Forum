@@ -4,6 +4,7 @@ import styled from "styled-components";
 import UsersContext from "../../contexts/UsersContext";
 import AnswersContext from "../../contexts/AnswersContext";
 import { BsFillTrash3Fill } from "react-icons/bs";
+import LikesDislikes from "./LikesDislikes";
 
 const StyledAnswer = styled.div``;
 
@@ -95,6 +96,7 @@ const Answer = ({ data }) => {
           )}
         </>
       )}
+      <LikesDislikes data={data} />
     </StyledAnswer>
   );
 };
