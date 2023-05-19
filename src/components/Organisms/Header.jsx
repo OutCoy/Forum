@@ -76,7 +76,7 @@ const HeaderContent = styled.div`
 `;
 
 const Header = () => {
-  const { logedUser } = useContext(UsersContext);
+  const { logedUser, setLogedUser } = useContext(UsersContext);
 
   return (
     <StyledHeader>
@@ -94,12 +94,12 @@ const Header = () => {
                 <img className="avatar" src={logedUser.avatarImg} alt="Avatar" />
                 <span>{logedUser.username}</span>
               </div>
-              <button>Log Out</button>
+              <button onClick={() => {setLogedUser(null)}}>Log Out</button>
             </>
           ) : (
             <>
-              <NavLink className='nav'>Log In</NavLink>
-              <NavLink className='nav'>Sign Up</NavLink>
+              <NavLink className='nav' to='/login'>Log In</NavLink>
+              <NavLink className='nav' to='/register'>Sign Up</NavLink>
             </>
           )}
         </div>
