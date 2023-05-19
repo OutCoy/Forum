@@ -30,7 +30,7 @@ const AskQuestion = () => {
       title: '',
       question: ''
     },
-    validationSchema, validationSchema,
+    validationSchema: validationSchema,
     onSubmit: values => {
       const newQuestion = {
         id: uuid(),

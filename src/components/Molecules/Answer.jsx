@@ -96,7 +96,7 @@ const Answer = ({ data }) => {
           )}
         </>
       )}
-      <LikesDislikes data={data} />
+      <LikesDislikes data={data} setMethod={setAnswers} setActionType={AnswersActionsType}/>
     </StyledAnswer>
   );
 };

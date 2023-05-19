@@ -8,6 +8,7 @@ import Answer from "../Molecules/Answer";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { v4 as uuid } from "uuid";
+import LikesDislikes from "../Molecules/LikesDislikes";
 
 const StyledQuestionPage = styled.main`
   background-color: #0b0e0f;
@@ -64,44 +65,48 @@ const QuestionPage = () => {
 
   return (
     <StyledQuestionPage>
-      {
-        data ? <>
-        {data.userId === logedUser?.id && (
+      {data ? (
         <>
-          <Link to={`/editQuestion/${id}`}>Edit</Link>
-          <button onClick={() => deleteQuestion()}>Delete</button>
+          {data.userId === logedUser?.id && (
+            <>
+              <Link to={`/editQuestion/${id}`}>Edit</Link>
+              <button onClick={() => deleteQuestion()}>Delete</button>
+            </>
+          )}
+          <LikesDislikes data={data} setMethod={setQuestions} setActionType={QuestionsActionsType}/>
+          <h1>{data.title}</h1>
+          <p>{data.question}</p>
+          <div>
+            {filteredAnswers.map((answer) => (
+              <Answer data={answer} key={answer.id} />
+            ))}
+          </div>
+          {logedUser && (
+            <StyledAnswerQuestion>
+              <form onSubmit={formik.handleSubmit}>
+                <label htmlFor="answer">Answer</label>
+                <textarea
+                  name="answer"
+                  id="answer"
+                  placeholder="Type your answer here..."
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.answer}
+                ></textarea>
+                <input type="submit" value="Add answer" />
+                {formik.touched.answer && formik.errors.answer && (
+                  <p>{formik.errors.answer}</p>
+                )}
+              </form>
+            </StyledAnswerQuestion>
+          )}
+        </>
+      ) : (
+        <>
+          <h1>Data is being loaded</h1>
+          <p>Please wait...</p>
         </>
       )}
-      <h1>{data.title}</h1>
-      <p>{data.question}</p>
-      <div>
-        {filteredAnswers.map((answer) => (
-          <Answer data={answer} key={answer.id} />
-        ))}
-      </div>
-      {logedUser && (
-        <StyledAnswerQuestion>
-          <form onSubmit={formik.handleSubmit}>
-            <label htmlFor="answer">Answer</label>
-            <textarea
-              name="answer"
-              id="answer"
-              placeholder="Type your answer here..."
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              value={formik.values.answer}
-            ></textarea>
-            <input type="submit" value="Add answer" />
-            {formik.touched.answer && formik.errors.answer && (
-              <p>{formik.errors.answer}</p>
-            )}
-          </form>
-        </StyledAnswerQuestion>
-      )}
-        </> : <>
-        <h1>Data is being loaded</h1>
-        <p>Please wait...</p></>
-      }
     </StyledQuestionPage>
   );
 };
