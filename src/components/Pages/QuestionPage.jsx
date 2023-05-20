@@ -142,12 +142,15 @@ const QuestionAnswers = styled.div`
         > textarea {
           resize: none;
           height: 300px;
-          border: none;
+          border: 1px solid #2384fc;
           border-radius: 5px;
           padding: 10px;
           box-sizing: border-box;
           background-color: #282e30;
           color: #fff;
+        }
+        >textarea:focus{
+          outline: 1px solid #35d100;
         }
         > input {
           align-self: center;
