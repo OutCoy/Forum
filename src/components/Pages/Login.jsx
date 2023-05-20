@@ -92,7 +92,7 @@ const Login = () => {
       );
       if (loggedInUser) {
         setLogedUser(loggedInUser);
-        navigate("/");
+        navigate(-1);
       } else {
         setIsUnsuccessful(true);
       }
