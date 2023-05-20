@@ -40,6 +40,11 @@ const Answer = ({ data }) => {
 
   return (
     <StyledAnswer>
+      <LikesDislikes
+        data={data}
+        setMethod={setAnswers}
+        setActionType={AnswersActionsType}
+      />
       {toDelete && (
         <StyledModal>
           <h2>Are you sure you want to delete it?</h2>
@@ -63,15 +68,9 @@ const Answer = ({ data }) => {
         </StyledModal>
       )}
       {toEdit ? (
-        <>
-          <BsFillTrash3Fill
-            onClick={() => {
-              setToDelete(true);
-            }}
-          />
+        <div className="edit">
           <form onSubmit={formik.handleSubmit}>
-            <input
-              type="text"
+            <textarea
               id="answer"
               name="answer"
               onChange={formik.handleChange}
@@ -80,23 +79,29 @@ const Answer = ({ data }) => {
             />
             <input type="submit" value="Save" />
           </form>
-        </>
+          <BsFillTrash3Fill
+          size={20}
+            onClick={() => {
+              setToDelete(true);
+            }}
+          />
+        </div>
       ) : (
-        <>
+        <div>
           <p>{data.answer}</p>
           {logedUser?.id === data.userId && (
-            <>
+            <div className="options">
               <button onClick={() => setToEdit(true)}>Edit</button>
               <BsFillTrash3Fill
+                size={20}
                 onClick={() => {
                   setToDelete(true);
                 }}
               />
-            </>
+            </div>
           )}
-        </>
+        </div>
       )}
-      <LikesDislikes data={data} setMethod={setAnswers} setActionType={AnswersActionsType}/>
     </StyledAnswer>
   );
 };
