@@ -58,9 +58,9 @@ const LikesDislikes = ({ data, setMethod, setActionType }) => {
 
   return (
     <StyledLikesDislikes>
-      <AiFillLike className={newData.rating.find(el => el.userId === logedUser?.id)?.value === 1 && 'like' } onClick={() => rate(1)} />
+      <AiFillLike size={20} className={newData.rating.find(el => el.userId === logedUser?.id)?.value === 1 && 'like' } onClick={() => rate(1)} />
       <h3>{newData.rating.reduce((acc, curr) => acc + curr.value, 0)}</h3>
-      <AiFillDislike className={newData.rating.find(el => el.userId === logedUser?.id)?.value === -1 && 'dislike' } onClick={() => rate(-1)} />
+      <AiFillDislike size={20} className={newData.rating.find(el => el.userId === logedUser?.id)?.value === -1 && 'dislike' } onClick={() => rate(-1)} />
     </StyledLikesDislikes>
   );
 };
