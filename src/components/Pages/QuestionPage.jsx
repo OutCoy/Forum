@@ -18,6 +18,9 @@ const StyledQuestionPage = styled.main`
 const QuestionPageContent = styled.div`
   width: 1000px;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 const QuestionContent = styled.div`
@@ -321,7 +324,7 @@ const QuestionPage = () => {
   return (
     <StyledQuestionPage>
       <QuestionPageContent>
-        {data ? (
+        {data?.asd ? (
           <>
             <QuestionContent>
               <LikesDislikes
