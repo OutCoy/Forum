@@ -6,7 +6,6 @@ import UsersContext from "../../contexts/UsersContext";
 import AnswersContext from "../../contexts/AnswersContext";
 import Answer from "../Molecules/Answer";
 import { useFormik } from "formik";
-import * as Yup from "yup";
 import { v4 as uuid } from "uuid";
 import LikesDislikes from "../Atoms/LikesDislikes";
 
@@ -57,9 +56,9 @@ const QuestionContent = styled.div`
     }
   }
   .question {
+    flex: 1 1;
     > * {
       margin: 0;
-      min-width: 875px;
       text-align: justify;
     }
     > h1 {
