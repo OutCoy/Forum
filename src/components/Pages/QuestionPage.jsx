@@ -227,6 +227,7 @@ const StyledAnswerQuestion = styled.div`
   padding: 10px 20px;
   box-sizing: border-box;
   border-radius: 5px;
+  width: 100%;
   > form {
     display: flex;
     flex-direction: column;
@@ -324,7 +325,7 @@ const QuestionPage = () => {
   return (
     <StyledQuestionPage>
       <QuestionPageContent>
-        {data?.asd ? (
+        {data ? (
           <>
             <QuestionContent>
               <LikesDislikes
