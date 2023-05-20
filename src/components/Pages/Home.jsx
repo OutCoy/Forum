@@ -50,9 +50,7 @@ const Home = () => {
         {dataLoaded ? (
           <>
           <h1>Questions</h1>
-            {
-              logedUser && <Link to='/askQuestion'>Ask Question</Link>
-            }
+          <Link to={logedUser? '/askQuestion' : '/login'}>Ask Question</Link>
             <div>
               {questions.map((question) => (
                 <Question data={question} key={question.id} />
