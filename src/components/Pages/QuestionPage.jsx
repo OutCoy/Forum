@@ -29,6 +29,7 @@ const QuestionContent = styled.div`
   gap: 20px;
   padding: 25px 15px;
   box-sizing: border-box;
+  width: 100%;
   > div.options {
     display: flex;
     flex-direction: column;
@@ -93,6 +94,7 @@ const QuestionAnswers = styled.div`
   gap: 25px;
   padding: 20px 0;
   box-sizing: border-box;
+  width: 100%;
   > div {
     display: flex;
     position: relative;
@@ -257,6 +259,7 @@ const StyledAnswerQuestion = styled.div`
       margin: 0;
       color: red;
       text-align: center;
+      font-size: 1rem;
     }
     > input {
       align-self: center;

@@ -61,7 +61,7 @@ const RegisterContent = styled.div`
   p {
     margin: 0;
     color: red;
-    font-size: 0.9rem;
+    font-size: 1rem;
     padding: 0;
   }
 `;

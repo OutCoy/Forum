@@ -53,17 +53,17 @@ const LoginContent = styled.div`
       border-radius: 5px;
       cursor: pointer;
     }
-    input[type="submit"]:hover{
+    input[type="submit"]:hover {
       background-color: #2384fc;
       color: #fff;
     }
   }
   p {
-        margin: 0;
-        color: red;
-        font-size: 0.9rem;
-        padding: 0;
-      }
+    margin: 0;
+    color: red;
+    font-size: 1rem;
+    padding: 0;
+  }
 `;
 
 const Login = () => {
