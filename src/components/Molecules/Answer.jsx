@@ -18,7 +18,7 @@ const Answer = ({ data }) => {
   const formik = useFormik({
     initialValues: { answer: data.answer },
     onSubmit: (values) => {
-      if (values.answer === "") {
+      if (values.answer === "" || !values.answer.replace(/\s/g, '').length) {
         setToDelete(true);
       } else {
         setAnswers({
