@@ -8,6 +8,7 @@ import Answer from "../Molecules/Answer";
 import { useFormik } from "formik";
 import { v4 as uuid } from "uuid";
 import LikesDislikes from "../Atoms/LikesDislikes";
+import { BsPencilFill } from "react-icons/bs";
 
 const StyledQuestionPage = styled.main`
   background-color: #0b0e0f;
@@ -71,6 +72,9 @@ const QuestionContent = styled.div`
     > p {
       margin-top: 20px;
       font-size: 1.1rem;
+      >svg{
+        margin-left: 20px;
+      }
     }
   }
   > div:first-of-type {
@@ -114,10 +118,13 @@ const QuestionAnswers = styled.div`
       flex-direction: column;
       align-items: center;
       justify-content: center;
+      border-radius: 5px;
       > h2 {
-        font-size: 2rem;
+        font-size: 1.7rem;
+        margin: 0;
       }
       > div {
+        margin-top: 10px;
         display: flex;
         gap: 20px;
         > button {
@@ -196,6 +203,9 @@ const QuestionAnswers = styled.div`
         text-align: justify;
         margin: 0 0 10px 0;
         white-space: pre-wrap;
+        >svg{
+          margin-left: 20px;
+        }
       }
     }
   }
@@ -339,7 +349,7 @@ const QuestionPage = () => {
               />
               <div className="question">
                 <h1>{data.title}</h1>
-                <p>{data.question}</p>
+                <p>{data.question} {data.isEdited && <BsPencilFill />}</p>
               </div>
               {data.userId === logedUser?.id && (
                 <div className="options">

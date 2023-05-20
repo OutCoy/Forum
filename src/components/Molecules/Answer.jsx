@@ -3,7 +3,7 @@ import { useContext, useState } from "react";
 import styled from "styled-components";
 import UsersContext from "../../contexts/UsersContext";
 import AnswersContext from "../../contexts/AnswersContext";
-import { BsFillTrash3Fill } from "react-icons/bs";
+import { BsFillTrash3Fill, BsPencilFill } from "react-icons/bs";
 import LikesDislikes from "../Atoms/LikesDislikes";
 
 const StyledAnswer = styled.div``;
@@ -88,7 +88,7 @@ const Answer = ({ data }) => {
         </div>
       ) : (
         <div>
-          <p>{data.answer}</p>
+          <p>{data.answer}{data.isEdited && <BsPencilFill />}</p>
           {logedUser?.id === data.userId && (
             <div className="options">
               <button onClick={() => setToEdit(true)}>Edit</button>
