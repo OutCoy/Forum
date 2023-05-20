@@ -43,7 +43,7 @@ const EditQuestion = () => {
         type: QuestionsActionsType.edit,
         data: editedQuestion
       });
-      navigate('/');
+      navigate(-1);
     }
   })
 
