@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { AiFillLike, AiFillDislike } from "react-icons/ai";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import UsersContext from "../../contexts/UsersContext";
 import { useNavigate } from "react-router-dom";
 
@@ -18,25 +18,22 @@ const StyledLikesDislikes = styled.div`
 const LikesDislikes = ({ data, setMethod, setActionType }) => {
   const navigate = useNavigate();
   const { logedUser } = useContext(UsersContext);
-  const [newData, setNewData] = useState(data);
 
   const rate = (value) => {
     if (logedUser) {
-      const ratingExists = newData.rating.find((el) => el.userId === logedUser.id);
+      const ratingExists = data.rating.find((el) => el.userId === logedUser.id);
       if (ratingExists) {
         if((ratingExists.value === 1 && value === 1) || (ratingExists.value === -1 && value === -1)){
-          setNewData({...newData, rating:newData.rating.filter(el => el.userId !== logedUser.id)});
           setMethod({
             type: setActionType.edit,
-            id: newData.id,
-            data: {...newData, rating:newData.rating.filter(el => el.userId !== logedUser.id)}
+            id: data.id,
+            data: {...data, rating:data.rating.filter(el => el.userId !== logedUser.id)}
           });
         } else if((ratingExists.value === 1 && value === -1) || (ratingExists.value === -1 && value === 1)){
-          setNewData({...newData, rating:newData.rating.map(el => {if(el.userId === logedUser.id){ return {userId:  logedUser.id, value: value}} else {return el}})});
           setMethod({
             type: setActionType.edit,
-            id: newData.id,
-            data: {...newData, rating:newData.rating.map(el => {if(el.userId === logedUser.id){ return {userId:  logedUser.id, value: value}} else {return el}})}
+            id: data.id,
+            data: {...data, rating:data.rating.map(el => {if(el.userId === logedUser.id){ return {userId:  logedUser.id, value: value}} else {return el}})}
           });
         }
       } else {
@@ -44,11 +41,10 @@ const LikesDislikes = ({ data, setMethod, setActionType }) => {
           userId: logedUser.id,
           value: value,
         };
-        setNewData({...newData, rating: [...newData.rating, newRating]});
         setMethod({
           type: setActionType.edit,
-            id: newData.id,
-            data: {...newData, rating: [...newData.rating, newRating]}
+            id: data.id,
+            data: {...data, rating: [...data.rating, newRating]}
         });
       }
     } else {
@@ -58,9 +54,9 @@ const LikesDislikes = ({ data, setMethod, setActionType }) => {
 
   return (
     <StyledLikesDislikes>
-      <AiFillLike size={20} className={newData.rating.find(el => el.userId === logedUser?.id)?.value === 1 && 'like' } onClick={() => rate(1)} />
-      <h3>{newData.rating.reduce((acc, curr) => acc + curr.value, 0)}</h3>
-      <AiFillDislike size={20} className={newData.rating.find(el => el.userId === logedUser?.id)?.value === -1 && 'dislike' } onClick={() => rate(-1)} />
+      <AiFillLike size={20} className={data.rating.find(el => el.userId === logedUser?.id)?.value === 1 && 'like' } onClick={() => rate(1)} />
+      <h3>{data.rating.reduce((acc, curr) => acc + curr.value, 0)}</h3>
+      <AiFillDislike size={20} className={data.rating.find(el => el.userId === logedUser?.id)?.value === -1 && 'dislike' } onClick={() => rate(-1)} />
     </StyledLikesDislikes>
   );
 };
