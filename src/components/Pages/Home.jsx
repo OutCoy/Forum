@@ -59,7 +59,7 @@ const Home = () => {
           </>
         ) : (
           <>
-            <h1>Loading questions...</h1>
+            <h1>Data is being loaded</h1>
             <p>Please wait...</p>
           </>
         )}
