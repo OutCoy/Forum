@@ -348,8 +348,8 @@ const QuestionPage = () => {
         toDeleteQuestion && <StyledModal>
           <h1>Are you sure you want to delete it?</h1>
           <div>
-            <button>Yes</button>
-            <button>No</button>
+            <button onClick={() => deleteQuestion()}>Yes</button>
+            <button onClick={() => setToDeleteQuestion(false)}>No</button>
           </div>
         </StyledModal>
       }
