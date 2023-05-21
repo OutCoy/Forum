@@ -289,8 +289,13 @@ const StyledAnswerQuestion = styled.div`
   }
 `;
 
+const StyledModal = styled.div`
+
+`;
+
 const QuestionPage = () => {
   const [emptyAnswer, setEmptyAnswer] = useState(false);
+  const [toDeleteQuestion, setToDeleteQuestion] = useState(false);
   const navigate = useNavigate();
   const { answers, setAnswers, AnswersActionsType } =
     useContext(AnswersContext);
@@ -339,6 +344,15 @@ const QuestionPage = () => {
 
   return (
     <StyledQuestionPage>
+      {
+        toDeleteQuestion && <StyledModal>
+          <h1>Are you sure you want to delete it?</h1>
+          <div>
+            <button>Yes</button>
+            <button>No</button>
+          </div>
+        </StyledModal>
+      }
       <QuestionPageContent>
         {data ? (
           <>
@@ -355,7 +369,7 @@ const QuestionPage = () => {
               </div>
               {data.userId === logedUser?.id && (
                 <div className="options">
-                  <button onClick={() => deleteQuestion()}>Delete</button>
+                  <button onClick={() => setToDeleteQuestion(true)}>Delete</button>
                   <Link to={`/editQuestion/${id}`}>Edit</Link>
                 </div>
               )}
