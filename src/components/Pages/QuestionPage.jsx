@@ -72,6 +72,8 @@ const QuestionContent = styled.div`
     > p {
       margin-top: 20px;
       font-size: 1.1rem;
+      white-space: pre-wrap;
+      width: 100%;
       >svg{
         margin-left: 20px;
       }
