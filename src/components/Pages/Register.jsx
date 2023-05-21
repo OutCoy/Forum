@@ -4,6 +4,7 @@ import * as Yup from "yup";
 import { useContext, useState } from "react";
 import UsersContext from "../../contexts/UsersContext";
 import { v4 as uuid } from "uuid";
+import { useNavigate } from "react-router-dom";
 
 const StyledRegister = styled.main`
   background-color: #0b0e0f;
@@ -67,6 +68,7 @@ const RegisterContent = styled.div`
 `;
 
 const Register = () => {
+  const navigate = useNavigate();
   const [isUsernameTaken, setIsUsernameTaken] = useState(false);
   const { users, setUsers, UsersActionTypes, setLogedUser } =
     useContext(UsersContext);
@@ -115,6 +117,7 @@ const Register = () => {
           data: newUser,
         });
         setLogedUser(newUser);
+        navigate('/');
       }
     },
   });
