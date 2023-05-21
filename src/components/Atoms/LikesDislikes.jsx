@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { AiFillLike, AiFillDislike } from "react-icons/ai";
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import UsersContext from "../../contexts/UsersContext";
 import { useNavigate } from "react-router-dom";
 
