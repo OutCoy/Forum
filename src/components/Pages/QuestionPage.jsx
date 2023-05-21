@@ -74,7 +74,7 @@ const QuestionContent = styled.div`
       font-size: 1.1rem;
       white-space: pre-wrap;
       width: 100%;
-      >svg{
+      > svg {
         margin-left: 20px;
       }
     }
@@ -163,7 +163,7 @@ const QuestionAnswers = styled.div`
           background-color: #282e30;
           color: #fff;
         }
-        >textarea:focus{
+        > textarea:focus {
           outline: 1px solid #35d100;
         }
         > input {
@@ -205,7 +205,7 @@ const QuestionAnswers = styled.div`
         text-align: justify;
         margin: 0 0 10px 0;
         white-space: pre-wrap;
-        >svg{
+        > svg {
           margin-left: 20px;
         }
       }
@@ -290,7 +290,39 @@ const StyledAnswerQuestion = styled.div`
 `;
 
 const StyledModal = styled.div`
-
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #000000dc;
+  display: flex;
+  left: 0;
+  top: 0;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  z-index: 10;
+  > h2 {
+    font-size: 1.7rem;
+    margin: 0;
+  }
+  > div {
+    margin-top: 10px;
+    display: flex;
+    gap: 20px;
+    > button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      font-size: 1.1rem;
+      background-color: #35d100;
+      cursor: pointer;
+    }
+    > button:hover {
+      color: #fff;
+      background-color: #2384fc;
+    }
+  }
 `;
 
 const QuestionPage = () => {
@@ -344,15 +376,15 @@ const QuestionPage = () => {
 
   return (
     <StyledQuestionPage>
-      {
-        toDeleteQuestion && <StyledModal>
+      {toDeleteQuestion && (
+        <StyledModal>
           <h1>Are you sure you want to delete it?</h1>
           <div>
             <button onClick={() => deleteQuestion()}>Yes</button>
             <button onClick={() => setToDeleteQuestion(false)}>No</button>
           </div>
         </StyledModal>
-      }
+      )}
       <QuestionPageContent>
         {data ? (
           <>
@@ -365,11 +397,15 @@ const QuestionPage = () => {
               />
               <div className="question">
                 <h1>{data.title}</h1>
-                <p>{data.question} {data.isEdited && <BsPencilFill />}</p>
+                <p>
+                  {data.question} {data.isEdited && <BsPencilFill />}
+                </p>
               </div>
               {data.userId === logedUser?.id && (
                 <div className="options">
-                  <button onClick={() => setToDeleteQuestion(true)}>Delete</button>
+                  <button onClick={() => setToDeleteQuestion(true)}>
+                    Delete
+                  </button>
                   <Link to={`/editQuestion/${id}`}>Edit</Link>
                 </div>
               )}
