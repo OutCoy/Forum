@@ -7,11 +7,35 @@ import {
 } from "react-icons/ai";
 
 const StyledFooter = styled.footer`
-
+  background-color: #393b4e;
+  height: 120px;
 `;
 
 const FooterContent = styled.div`
-
+  width: 1000px;
+  margin: 0 auto;
+  text-align: center;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  height: 100%;
+  align-items: center;
+  >ul{
+    display: flex;
+    list-style: none;
+    margin: 0;
+    gap: 20px;
+    >li>a>svg{
+      color: #35d100;
+    }
+    >li>a>svg:hover{
+      color: #2384fc;
+    }
+  }
+  >p{
+    margin: 0;
+  }
 `;
 
 const Footer = () => {
