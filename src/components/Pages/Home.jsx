@@ -52,6 +52,7 @@ const Filters = styled.div`
   }
   > select {
     align-self: center;
+    text-align: center;
     border: none;
     padding: 5px 10px;
     background-color: #393b4e;
@@ -101,10 +102,18 @@ const Home = () => {
         );
         setData(sortedAnswersUp);
         break;
-      case "":
+      case "notAnswered":
+        const notAnsweredQuestions = [...questions].filter((question) => !(answers.find((answer) => answer.questionId === question.id)));
+        setData(notAnsweredQuestions);
+        break;
+      case "answeredQuestions":
+        const answeredQuestions = [...questions].filter((question) => (answers.find((answer) => answer.questionId === question.id)));
+        setData(answeredQuestions);
+        break;
+      default:
         setData(questions);
     }
-  }, [sortType, questions]);
+  }, [sortType, questions, answers]);
 
   return (
     <StyledHome>
@@ -123,6 +132,8 @@ const Home = () => {
                 <option value="answersUp">Answers ↑</option>
                 <option value="ratingDown">Rating ↓</option>
                 <option value="ratingUp">Rating ↑</option>
+                <option value="answeredQuestions">Only answered</option>
+                <option value="notAnswered">Only not answered</option>
               </select>
             </Filters>
             <h1>Questions</h1>
