@@ -6,7 +6,7 @@ import UsersContext from "../../contexts/UsersContext";
 import { useNavigate } from "react-router-dom";
 
 const StyledLogin = styled.main`
-  min-height: calc(100vh - 75px);
+  min-height: calc(100vh - 175px);
   background-color: #0b0e0f;
   color: #fff;
   display: flex;

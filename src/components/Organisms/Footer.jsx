@@ -8,7 +8,7 @@ import {
 
 const StyledFooter = styled.footer`
   background-color: #393b4e;
-  height: 120px;
+  height: 100px;
 `;
 
 const FooterContent = styled.div`

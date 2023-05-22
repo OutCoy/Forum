@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 
 const StyledAskQuestion = styled.main`
   background-color: #0b0e0f;
-  min-height: 100vh;
+  min-height: calc(100vh - 175px);
   color: #fff;
 `;
 

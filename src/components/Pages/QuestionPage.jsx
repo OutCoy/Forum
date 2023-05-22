@@ -12,7 +12,7 @@ import { BsPencilFill } from "react-icons/bs";
 
 const StyledQuestionPage = styled.main`
   background-color: #0b0e0f;
-  min-height: calc(100vh - 75px);
+  min-height: calc(100vh - 175px);
   color: #fff;
 `;
 
