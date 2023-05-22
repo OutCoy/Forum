@@ -10,6 +10,7 @@ import Register from "./components/Pages/Register";
 import { useContext } from "react";
 import UsersContext from "./contexts/UsersContext";
 import Footer from "./components/Organisms/Footer";
+import NotFoundPage from "./components/Pages/NotFoundPage";
 
 const App = () => {
   const { logedUser } = useContext(UsersContext);
@@ -34,6 +35,7 @@ const App = () => {
         <Route path="/register" element={<Register />} />
         <Route path="/" element={<Home />} />
         <Route path="/question/:id" element={<QuestionPage />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
       <Footer />
     </>
