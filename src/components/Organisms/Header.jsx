@@ -79,6 +79,9 @@ const HeaderContent = styled.div`
   .avatar{
     height: 60%;
     border-radius: 50%;
+    width: 45px;
+    object-fit: cover;
+    object-position: center;
   }
 `;
 
