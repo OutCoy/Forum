@@ -9,6 +9,7 @@ import Header from './components/Organisms/Header';
 import Register from './components/Pages/Register';
 import { useContext } from 'react';
 import UsersContext from './contexts/UsersContext';
+import NotFoundPage from './components/Pages/NotFoundPage';
 
 const App = () => {
 
@@ -24,6 +25,7 @@ const App = () => {
         <Route path='/register' element={<Register />} />
         <Route path='/' element={<Home />}/>
         <Route path='/question/:id' element={<QuestionPage />}/>
+        <Route path='*' element={<NotFoundPage />} />
       </Routes>
     </>
   );
