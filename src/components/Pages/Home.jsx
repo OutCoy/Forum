@@ -64,7 +64,7 @@ const Home = () => {
   const { logedUser } = useContext(UsersContext);
   const { questions, dataLoaded } = useContext(QuestionsContext);
   const { answers } = useContext(AnswersContext);
-  const [sortType, setSortType] = useState("answersDown");
+  const [sortType, setSortType] = useState("");
   const [data, setData] = useState(questions);
 
   useEffect(() => {
@@ -101,6 +101,8 @@ const Home = () => {
         );
         setData(sortedAnswersUp);
         break;
+      case "":
+        setData(questions);
     }
   }, [sortType, questions]);
 
@@ -116,6 +118,7 @@ const Home = () => {
                 name="filters"
                 id="filters"
               >
+                <option value="">-- Select filter --</option>
                 <option value="answersDown">Answers ↓</option>
                 <option value="answersUp">Answers ↑</option>
                 <option value="ratingDown">Rating ↓</option>
