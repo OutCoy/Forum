@@ -1,9 +1,10 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import QuestionsContext from "../../contexts/QuestionsContext";
 import Question from "../Molecules/Question";
 import { Link } from "react-router-dom";
 import UsersContext from "../../contexts/UsersContext";
+import AnswersContext from "../../contexts/AnswersContext";
 
 const StyledHome = styled.main`
   min-height: calc(100vh - 75px);
@@ -62,23 +63,69 @@ const Filters = styled.div`
 const Home = () => {
   const { logedUser } = useContext(UsersContext);
   const { questions, dataLoaded } = useContext(QuestionsContext);
+  const { answers } = useContext(AnswersContext);
+  const [sortType, setSortType] = useState("answersDown");
+  const [data, setData] = useState(questions);
+
+  useEffect(() => {
+    switch (sortType) {
+      case "ratingDown":
+        const sortedRatingDown = [...questions].sort(
+          (a, b) =>
+            b.rating.reduce((acc, curr) => acc + curr.value, 0) -
+            a.rating.reduce((acc, curr) => acc + curr.value, 0)
+        );
+        setData(sortedRatingDown);
+        break;
+      case "ratingUp":
+        const sortedRatingUp = [...questions].sort(
+          (a, b) =>
+            a.rating.reduce((acc, curr) => acc + curr.value, 0) -
+            b.rating.reduce((acc, curr) => acc + curr.value, 0)
+        );
+        setData(sortedRatingUp);
+        break;
+      case "answersDown":
+        const sortedAnswersDown = [...questions].sort(
+          (a, b) =>
+            answers.filter((answer) => answer.questionId === b.id).length -
+            answers.filter((answer) => answer.questionId === a.id).length
+        );
+        setData(sortedAnswersDown);
+        break;
+      case "answersUp":
+        const sortedAnswersUp = [...questions].sort(
+          (a, b) =>
+            answers.filter((answer) => answer.questionId === a.id).length -
+            answers.filter((answer) => answer.questionId === b.id).length
+        );
+        setData(sortedAnswersUp);
+        break;
+    }
+  }, [sortType, questions]);
+
   return (
     <StyledHome>
       <MainContent>
-        <Filters>
-          <label htmlFor="filters">Filter </label>
-          <select name="filters" id="filters">
-            <option className="check" value="">value1</option>
-            <option value="">value2</option>
-            <option value="">value3</option>
-          </select>
-        </Filters>
         {dataLoaded ? (
           <>
+            <Filters>
+              <label htmlFor="filters">Filter </label>
+              <select
+                onChange={(e) => setSortType(e.target.value)}
+                name="filters"
+                id="filters"
+              >
+                <option value="answersDown">Answers ↓</option>
+                <option value="answersUp">Answers ↑</option>
+                <option value="ratingDown">Rating ↓</option>
+                <option value="ratingUp">Rating ↑</option>
+              </select>
+            </Filters>
             <h1>Questions</h1>
             <Link to={logedUser ? "/askQuestion" : "/login"}>Ask Question</Link>
             <div className="allQuestions">
-              {questions.map((question) => (
+              {data.map((question) => (
                 <Question data={question} key={question.id} />
               ))}
             </div>
