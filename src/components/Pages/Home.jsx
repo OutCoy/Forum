@@ -18,7 +18,7 @@ const MainContent = styled.div`
   flex-direction: column;
   align-items: center;
   position: relative;
-  >a{
+  > a {
     position: absolute;
     text-decoration: none;
     font-size: 1.1rem;
@@ -29,15 +29,33 @@ const MainContent = styled.div`
     background-color: #35d100;
     border-radius: 5px;
   }
-  >a:hover{
+  > a:hover {
     background-color: #2384fc;
     color: #fff;
   }
-  >div{
+  > div.allQuestions {
     display: flex;
     flex-direction: column;
     gap: 30px;
     width: 100%;
+  }
+`;
+
+const Filters = styled.div`
+  width: 100%;
+  display: flex;
+  padding: 15px;
+  align-items: center;
+  > label {
+    margin-right: 10px;
+  }
+  > select {
+    align-self: center;
+    border: none;
+    padding: 5px 10px;
+    background-color: #393b4e;
+    color: #fff;
+    cursor: pointer;
   }
 `;
 
@@ -47,11 +65,19 @@ const Home = () => {
   return (
     <StyledHome>
       <MainContent>
+        <Filters>
+          <label htmlFor="filters">Filter </label>
+          <select name="filters" id="filters">
+            <option className="check" value="">value1</option>
+            <option value="">value2</option>
+            <option value="">value3</option>
+          </select>
+        </Filters>
         {dataLoaded ? (
           <>
-          <h1>Questions</h1>
-          <Link to={logedUser? '/askQuestion' : '/login'}>Ask Question</Link>
-            <div>
+            <h1>Questions</h1>
+            <Link to={logedUser ? "/askQuestion" : "/login"}>Ask Question</Link>
+            <div className="allQuestions">
               {questions.map((question) => (
                 <Question data={question} key={question.id} />
               ))}
