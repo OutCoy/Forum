@@ -1,9 +1,10 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import QuestionsContext from "../../contexts/QuestionsContext";
 import Question from "../Molecules/Question";
 import { Link } from "react-router-dom";
 import UsersContext from "../../contexts/UsersContext";
+import AnswersContext from "../../contexts/AnswersContext";
 
 const StyledHome = styled.main`
   min-height: calc(100vh - 75px);
@@ -18,7 +19,7 @@ const MainContent = styled.div`
   flex-direction: column;
   align-items: center;
   position: relative;
-  >a{
+  > a {
     position: absolute;
     text-decoration: none;
     font-size: 1.1rem;
@@ -29,11 +30,11 @@ const MainContent = styled.div`
     background-color: #35d100;
     border-radius: 5px;
   }
-  >a:hover{
+  > a:hover {
     background-color: #2384fc;
     color: #fff;
   }
-  >div{
+  > div.allQuestions {
     display: flex;
     flex-direction: column;
     gap: 30px;
@@ -41,18 +42,93 @@ const MainContent = styled.div`
   }
 `;
 
+const Filters = styled.div`
+  width: 100%;
+  display: flex;
+  padding: 15px;
+  align-items: center;
+  > label {
+    margin-right: 10px;
+  }
+  > select {
+    align-self: center;
+    border: none;
+    padding: 5px 10px;
+    background-color: #393b4e;
+    color: #fff;
+    cursor: pointer;
+  }
+`;
+
 const Home = () => {
   const { logedUser } = useContext(UsersContext);
   const { questions, dataLoaded } = useContext(QuestionsContext);
+  const { answers } = useContext(AnswersContext);
+  const [sortType, setSortType] = useState("");
+  const [data, setData] = useState(questions);
+
+  useEffect(() => {
+    switch (sortType) {
+      case "ratingDown":
+        const sortedRatingDown = [...questions].sort(
+          (a, b) =>
+            b.rating.reduce((acc, curr) => acc + curr.value, 0) -
+            a.rating.reduce((acc, curr) => acc + curr.value, 0)
+        );
+        setData(sortedRatingDown);
+        break;
+      case "ratingUp":
+        const sortedRatingUp = [...questions].sort(
+          (a, b) =>
+            a.rating.reduce((acc, curr) => acc + curr.value, 0) -
+            b.rating.reduce((acc, curr) => acc + curr.value, 0)
+        );
+        setData(sortedRatingUp);
+        break;
+      case "answersDown":
+        const sortedAnswersDown = [...questions].sort(
+          (a, b) =>
+            answers.filter((answer) => answer.questionId === b.id).length -
+            answers.filter((answer) => answer.questionId === a.id).length
+        );
+        setData(sortedAnswersDown);
+        break;
+      case "answersUp":
+        const sortedAnswersUp = [...questions].sort(
+          (a, b) =>
+            answers.filter((answer) => answer.questionId === a.id).length -
+            answers.filter((answer) => answer.questionId === b.id).length
+        );
+        setData(sortedAnswersUp);
+        break;
+      case "":
+        setData(questions);
+    }
+  }, [sortType, questions]);
+
   return (
     <StyledHome>
       <MainContent>
         {dataLoaded ? (
           <>
-          <h1>Questions</h1>
-          <Link to={logedUser? '/askQuestion' : '/login'}>Ask Question</Link>
-            <div>
-              {questions.map((question) => (
+            <Filters>
+              <label htmlFor="filters">Filter </label>
+              <select
+                onChange={(e) => setSortType(e.target.value)}
+                name="filters"
+                id="filters"
+              >
+                <option value="">-- Select filter --</option>
+                <option value="answersDown">Answers ↓</option>
+                <option value="answersUp">Answers ↑</option>
+                <option value="ratingDown">Rating ↓</option>
+                <option value="ratingUp">Rating ↑</option>
+              </select>
+            </Filters>
+            <h1>Questions</h1>
+            <Link to={logedUser ? "/askQuestion" : "/login"}>Ask Question</Link>
+            <div className="allQuestions">
+              {data.map((question) => (
                 <Question data={question} key={question.id} />
               ))}
             </div>
