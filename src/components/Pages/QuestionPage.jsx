@@ -122,6 +122,7 @@ const StyledAnswerQuestion = styled.div`
       }
     }
     textarea {
+      font-size: 1rem;
       width: 100%;
       resize: none;
       border: none;

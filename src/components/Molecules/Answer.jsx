@@ -33,6 +33,7 @@ const StyledAnswer = styled.div`
         box-sizing: border-box;
         background-color: #282e30;
         color: #fff;
+        font-size: 1rem;
       }
       > textarea:focus {
         outline: 1px solid #35d100;
