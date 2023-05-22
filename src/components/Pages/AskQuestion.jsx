@@ -56,6 +56,7 @@ const AskQuestionContent = styled.div`
         background-color: #393b4e;;
         border: 1px solid #2384fc;
         color: #fff;
+        font-size: 1rem;
       }
       >textarea:focus, >input:focus{
           outline: 1px solid #35d100;
