@@ -130,6 +130,19 @@
         }
       ],
       "isEdited": true
+    },
+    {
+      "id": "c640f9e9-ac97-4233-b6ba-16371a74e094",
+      "userId": "b9c51366-f591-44f7-bf66-49afcf956e20",
+      "title": "Testavimas",
+      "question": "Gal but jau galutinis testavimas, ziurim ar visi funkcionalumai veikia :) Tikrinamas redagavimas",
+      "rating": [
+        {
+          "userId": "b9c51366-f591-44f7-bf66-49afcf956e20",
+          "value": 1
+        }
+      ],
+      "isEdited": true
     }
   ],
   "users": [
@@ -174,6 +187,12 @@
       "username": "Registravimo testas",
       "password": "aaaaaaaa",
       "avatarImg": "https://images.unsplash.com/photo-1554151228-14d9def656e4"
+    },
+    {
+      "id": "b9c51366-f591-44f7-bf66-49afcf956e20",
+      "username": "Testavimas",
+      "password": "aaaaaaaa",
+      "avatarImg": "https://images.unsplash.com/photo-1684697136517-2a1a88e5e02d"
     }
   ],
   "answers": [
@@ -363,6 +382,27 @@
       "questionId": "a21883cd-7273-4e4a-b45f-1346592eedd8",
       "userId": "c295b58d-d9c0-451f-933d-647983e7df82",
       "answer": "Naujas atsakymas",
+      "rating": [],
+      "isEdited": false
+    },
+    {
+      "id": "b2f196c6-e9ca-4c66-9832-08cdd156dd4a",
+      "questionId": "c640f9e9-ac97-4233-b6ba-16371a74e094",
+      "userId": "b9c51366-f591-44f7-bf66-49afcf956e20",
+      "answer": "Komentavimo testavimas... Atsakymo redagavimas!",
+      "rating": [
+        {
+          "userId": "b9c51366-f591-44f7-bf66-49afcf956e20",
+          "value": 1
+        }
+      ],
+      "isEdited": true
+    },
+    {
+      "id": "61900e24-224b-4b47-97b6-73d715164bd8",
+      "questionId": "c640f9e9-ac97-4233-b6ba-16371a74e094",
+      "userId": "b9c51366-f591-44f7-bf66-49afcf956e20",
+      "answer": "Atsakymas istrinti",
       "rating": [],
       "isEdited": false
     }
